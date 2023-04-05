@@ -11,9 +11,9 @@ pipeline {
     stage('Build and Push Docker Image') {
       steps {
         script {
-          def dockerImage = docker.build("my_image:latest", "--build-arg JAR_FILE=./app/build/libs/init-0.0.1-SNAPSHOT.jar .")
+          def dockerImage = docker.build("myimage:latest", "--build-arg JAR_FILE=./app/build/libs/init-0.0.1-SNAPSHOT.jar .")
           docker.withRegistry("http://registry:5000") {
-            dockerImage.push("my_image:latest")
+            dockerImage.push("myimage:latest")
           }
         }
       }
@@ -23,7 +23,7 @@ pipeline {
         script {
           def docker = dockerUtils.getDocker()
           docker.withRegistry("http://registry:5000") {
-            def container = docker.image("my_image:latest").run("-p 8080:8080", "--name my_container --network my_network registry:latest")
+            def container = docker.image("myimage:latest").run("-p 8080:8080", "--name mycontainer --network my_network registry:latest")
             println "Container ID: ${container.id}"
           }
         }
