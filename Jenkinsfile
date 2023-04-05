@@ -5,7 +5,7 @@ def gitCredentialsId = 'githubcreds'
 pipeline {
   agent {
     docker {
-      image 'docker:20.10.10'
+      image 'thomastremlett/jenkins-build-image:latest'
       args '-u root'
     }
   }
@@ -16,16 +16,6 @@ pipeline {
         script {
           git url: gitUrl, branch: gitBranch, credentialsId: gitCredentialsId
         }
-      }
-    }
-
-    stage('Install Maven and OpenJDK17') {
-      steps {
-        sh '''
-          apt-get update
-          apt-get install -y openjdk-17-jdk
-          apt-get install -y maven
-        '''
       }
     }
 
