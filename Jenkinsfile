@@ -44,6 +44,8 @@ pipeline {
 
     stage('Deploy Docker image') {
       steps {
+        sh "docker stop domhash"
+        sh "docker rm domhash"
         sh "docker run -d --name domhash -v /var/run/docker.sock:/var/run/docker.sock domhash:${BUILD_NUMBER}"
       }
     }
