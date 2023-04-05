@@ -1,8 +1,3 @@
-def gitUrl = 'git@github.com:thomastremlett/domhash.git'
-def gitBranch = 'main'
-def gitCredentialsId = 'githubcreds'
-
-
 pipeline {
   agent {
     docker {
@@ -27,11 +22,13 @@ pipeline {
       }
     }
 
-    // stage('TestMicroservice') {
-    //   steps {
-        // sh './mvnw test'
-        // junit '**/target/surefire-reports/*.xml'
-    //   }
+    stage('TestMicroservice') {
+      steps {
+        cd ./app
+        sh './mvnw test'
+        junit '**/target/surefire-reports/*.xml'
+      }
+    }
 
     stage('Build Docker image') {
       steps {
@@ -47,5 +44,4 @@ pipeline {
     }
   
   }
-  }
-
+}
