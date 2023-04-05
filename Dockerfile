@@ -14,4 +14,4 @@ COPY ./DOMHASH/target/domhash-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
 
 # Start the microservice when the container starts
-CMD ["java", "-jar", "/srv/init-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/srv/domhash-0.0.1-SNAPSHOT.jar"]
