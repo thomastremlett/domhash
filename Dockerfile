@@ -9,8 +9,7 @@ RUN microdnf install -y java-17-openjdk-headless && \
 WORKDIR /srv/
 
 # Copy the microservice JAR file to the container
-COPY ./DOMHASH/build/libs/init-0.0.1-SNAPSHOT.jar .
-
+COPY ./DOMHASH/target/domhash-0.0.1-SNAPSHOT.jar
 # Expose the port that the microservice will run on
 EXPOSE 8080
 
