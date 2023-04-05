@@ -12,7 +12,7 @@ pipeline {
     stage('Build and Push Docker Image') {
       steps {
         script {
-          docker.build('domhash').push('registry:5000/domhash:latest')
+          docker.build('domhash').push('domhash:latest')
         }
       }
     }
