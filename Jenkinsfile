@@ -3,8 +3,15 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        sshagent(credentials: ['githubcreds']) {
-          git url: 'git@github.com:thomastremlett/domhash.git', branch: 'main'
+        withCredentials([sshUserPrivateKey(credentialsId: 'githubcreds', keyFileVariable: 'SSH_KEY', passphraseVariable: '', usernameVariable: 'SSH_USER')]) {
+          sh """
+            mkdir -p ~/.ssh
+            chmod 700 ~/.ssh
+            echo "$SSH_KEY" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            git clone git@github.com:thomastremlett/domhash.git
+          """
         }
       }
     }
