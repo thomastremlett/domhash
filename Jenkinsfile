@@ -4,7 +4,7 @@ pipeline {
     stage('Checkout') {
       steps {
         script { 
-          git url: 'git@github.com:<user>/<repo>.git', branch: 'master', credentialsId: 'githubcreds'
+          git url: 'git@github.com:thomastremlett/domhash.git', branch: 'main', credentialsId: 'githubcreds'
           
         }
       }
