@@ -8,8 +8,14 @@ def dockerContainerName = 'mycontainer'
 def dockerNetworkName = 'my_network'
 
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'docker:20.10.10'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
+    }
+  }
   stages {
+
     stage('Checkout') {
       steps {
         script {
@@ -17,11 +23,17 @@ pipeline {
         }
       }
     }
+
     stage('Build Docker image') {
       steps {
-        sh 'docker build -t my-image .'
-        sh 'docker tag my-image my-image:1.0'
-        sh 'docker save my-image:1.0 > my-image.tar'
+        sh 'docker build -t domhash .'
+        sh "docker tag domhash domhash:${BUILD_NUMBER}"
+      }
+    }
+
+    stage('Deploy Docker image') {
+      steps {
+        sh "docker run -d --name domhash -v /var/run/docker.sock:/var/run/docker.sock domhash:${BUILD_NUMBER}"
       }
     }
     // stage('Deploy Docker image') {
