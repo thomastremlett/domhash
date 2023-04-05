@@ -1,4 +1,4 @@
-def gitUrl = 'git@github.com:AnimatedSwine37/domhash-microservice.git'
+def gitUrl = 'git@github.com:thomastremlett/domhash.git'
 def gitBranch = 'main'
 def gitCredentialsId = 'jenkins'
 
