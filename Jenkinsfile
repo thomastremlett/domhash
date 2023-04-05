@@ -8,7 +8,6 @@ pipeline {
     docker {
       image 'maven:3.8.4-openjdk-17'
       args '-u root'
-      beforeAgent true
       label 'docker'
     }
   }
