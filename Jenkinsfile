@@ -1,3 +1,7 @@
+def gitUrl = 'git@github.com:thomastremlett/domhash.git'
+def gitBranch = 'main'
+def gitCredentialsId = 'githubcreds'
+
 pipeline {
   agent {
     docker {
