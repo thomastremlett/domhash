@@ -12,7 +12,14 @@ pipeline {
     stage('Build and Push Docker Image') {
       steps {
         script {
-          docker.build('domhash').push('domhash:latest')
+          def imageName = "domhash"
+          def registryUrl = "http://registry:5000"
+          def tag = "latest"
+          def qualifiedImageName = "${registryUrl}/${imageName}:${tag}"
+          def dockerImage = docker.build(qualifiedImageName, "--build-arg JAR_FILE=./app/build/libs/init-0.0.1-SNAPSHOT.jar .")
+          docker.withRegistry(registryUrl) {
+            dockerImage.push()
+          }
         }
       }
     }
