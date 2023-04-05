@@ -1,6 +1,6 @@
-def gitUrl = 'git@github.com:thomastremlett/domhash.git'
+def gitUrl = 'git@github.com:AnimatedSwine37/domhash-microservice.git'
 def gitBranch = 'main'
-def gitCredentialsId = 'githubcreds'
+def gitCredentialsId = 'jenkins'
 
 pipeline {
   agent {
@@ -24,7 +24,6 @@ pipeline {
         sh 'mvn clean install -f DOMHASH/pom.xml'
       }
     }
-
 
     // stage('TestMicroservice') {
     //   // steps {
