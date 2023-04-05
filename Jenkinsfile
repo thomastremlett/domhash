@@ -17,26 +17,20 @@ pipeline {
         }
       }
     }
-    stage('Build and Push Docker Image') {
+    stage('Build Docker image') {
       steps {
-        script {
-          def dockerImage = docker.build("${dockerImageName}:${dockerImageTag}", "--build-arg JAR_FILE=./app/build/libs/init-0.0.1-SNAPSHOT.jar .")
-          docker.withRegistry(dockerRegistryUrl) {
-            dockerImage.push("${dockerImageName}:${dockerImageTag}")
-          }
-        }
+        sh 'docker build -t my-image .'
+        sh 'docker tag my-image my-image:1.0'
+        sh 'docker save my-image:1.0 > my-image.tar'
       }
     }
-    stage('Deploy to Docker Container') {
-      steps {
-        script {
-          def docker = dockerUtils.getDocker()
-          docker.withRegistry(dockerRegistryUrl) {
-            def container = docker.image("${dockerImageName}:${dockerImageTag}").run("-p 8080:8080", "--name ${dockerContainerName} --network ${dockerNetworkName} registry:latest")
-            println "Container ID: ${container.id}"
-          }
-        }
-      }
-    }
+    // stage('Deploy Docker image') {
+    //   steps {
+    //     sh 'scp my-image.tar tremo@:/path/to/my-image.tar'
+    //     sshagent (credentials: ['my-ssh-key']) {
+    //       sh 'ssh user@target-machine "docker load < /path/to/my-image.tar"'
+    //     }
+    //   }
+    // }
   }
 }
