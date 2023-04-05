@@ -22,7 +22,7 @@ pipeline {
 
     stage('Build Java Microservice') {
       steps {
-        sh 'mvn clean installs'
+        sh 'mvn clean install ./app/'
       }
     }
 
