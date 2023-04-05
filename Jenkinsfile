@@ -26,11 +26,11 @@ pipeline {
       }
     }
 
-    stage('TestMicroservice') {
-      steps {
+    // stage('TestMicroservice') {
+    //   steps {
         // sh './mvnw test'
         // junit '**/target/surefire-reports/*.xml'
-      }
+    //   }
 
     stage('Build Docker image') {
       steps {
@@ -46,6 +46,5 @@ pipeline {
     }
   
   }
-}
-}
+  }
 }
