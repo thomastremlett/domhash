@@ -28,8 +28,7 @@ pipeline {
 
     // stage('TestMicroservice') {
     //   // steps {
-    //   //   // sh "cd ./app"
-    //   //   // sh "./mvnw test"
+    //   //   // sh "./DOMHASH/mvnw test"
     //   //   // junit '**/target/surefire-reports/*.xml'
     //   // }
     // }
