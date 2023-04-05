@@ -7,7 +7,9 @@ pipeline {
   agent {
     docker {
       image 'maven:3.8.4-openjdk-17'
-      args '-v /var/run/docker.sock:/var/run/docker.sock'
+      args '-u root'
+      beforeAgent true
+      label 'docker'
     }
   }
   stages {
@@ -22,7 +24,7 @@ pipeline {
 
     stage('Build Java Microservice') {
       steps {
-        sh './mvn clean build'
+        sh 'mvn clean installs'
       }
     }
 
