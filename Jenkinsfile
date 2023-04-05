@@ -25,6 +25,13 @@ pipeline {
       }
     }
 
+    stage('Install Docker') {
+      steps {
+        sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
+        sh 'sudo sh get-docker.sh'
+      }
+    }
+
     // stage('TestMicroservice') {
     //   // steps {
     //   //   // sh "cd ./app"
