@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<root xmlns:edi='http://ecommerce.org/schema'>
+    <edi:order>
+        <edi:orderHeader>
+            <edi:orderNumber>123456</edi:orderNumber>
+            <edi:orderDate>2012-01-01</edi:orderDate>
+            <edi:orderTotal>100.00</edi:orderTotal>
+        </edi:orderHeader>
+        <edi:orderItems>
+            <edi:orderItem>
+                <edi:productID>123</edi:productID>
+                <edi:productName>Widget</edi:productName>
+                <edi:quantity>1</edi:quantity>
+                <edi:price>100.00</edi:price>
+            </edi:orderItem>
+        </edi:orderItems>
+    </edi:order>
+</root>

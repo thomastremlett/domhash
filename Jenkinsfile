@@ -21,7 +21,7 @@ pipeline {
 
     stage('Build Java Microservice') {
       steps {
-        sh 'cd ./app'
+        sh 'cd ./DOMHASH'
         sh 'mvn clean install'
       }
     }

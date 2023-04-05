@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<root xmlns:ec='http://ecommerce.org/schema'>
+    <ec:order>
+        <ec:orderHeader>
+            <ec:orderNumber>123456</ec:orderNumber>
+            <ec:orderDate>2012-01-01</ec:orderDate>
+            <ec:orderTotal>100.00</ec:orderTotal>
+        </ec:orderHeader>
+        <ec:orderItems>
+            <ec:orderItem>
+                <ec:productID>123</ec:productID>
+                <ec:productName>Widget</ec:productName>
+                <ec:quantity>1</ec:quantity>
+                <ec:price>100.00</ec:price>
+            </ec:orderItem>
+        </ec:orderItems>
+    </ec:order>
+</root>
