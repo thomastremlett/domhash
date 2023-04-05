@@ -6,7 +6,7 @@ def gitCredentialsId = 'githubcreds'
 pipeline {
   agent {
     docker {
-      image 'docker:20.10.10'
+      image 'maven:latest'
       args '-v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
@@ -22,7 +22,8 @@ pipeline {
 
     stage('Build Java Microservice') {
       steps {
-        sh './mvnw clean install -Pprod'
+        apt install maven
+        sh './mvn clean install -Pprod'
       }
     }
 
