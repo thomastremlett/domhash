@@ -1,6 +1,6 @@
 def gitUrl = 'git@github.com:thomastremlett/domhash.git'
 def gitBranch = 'main'
-def gitCredentialsId = 'jenkins'
+def gitCredentialsId = 'gitcreds'
 
 pipeline {
   agent {
