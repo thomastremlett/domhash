@@ -21,7 +21,7 @@ pipeline {
         script {
           def docker = dockerUtils.getDocker()
           docker.withRegistry('http://registry:5000', 'docker-registry-credentials') {
-            docker.image('registry:5000/domhash:latest').withRun('-p 8080:8080') { c ->
+            docker.image('domhash:latest').withRun('-p 8080:8080') { c ->
               // Container is running
             }
           }
