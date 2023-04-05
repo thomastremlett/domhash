@@ -24,8 +24,8 @@ pipeline {
 
     stage('TestMicroservice') {
       steps {
-        cd ./app
-        sh './mvnw test'
+        sh "cd ./app"
+        sh "./mvnw test"
         junit '**/target/surefire-reports/*.xml'
       }
     }
