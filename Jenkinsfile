@@ -22,7 +22,6 @@ pipeline {
 
     stage('Build Java Microservice') {
       steps {
-        apt install maven
         sh './mvn clean install -Pprod'
       }
     }
