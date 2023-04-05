@@ -13,7 +13,7 @@ pipeline {
       steps {
         script {
           def imageName = "domhash"
-          def registryUrl = "http://registry:5000"
+          def registryUrl = registry:5000"
           def tag = "latest"
           def qualifiedImageName = "${registryUrl}/${imageName}:${tag}"
           def dockerImage = docker.build(qualifiedImageName, "--build-arg JAR_FILE=./app/build/libs/init-0.0.1-SNAPSHOT.jar .")
