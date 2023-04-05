@@ -5,7 +5,7 @@ def gitCredentialsId = 'githubcreds'
 pipeline {
   agent {
     docker {
-      image 'maven:3.8.4-openjdk-17'
+      image 'docker:20.10.10'
       args '-u root'
     }
   }
@@ -19,18 +19,22 @@ pipeline {
       }
     }
 
+    stage('Install Maven and OpenJDK17') {
+      steps {
+        sh '''
+          apt-get update
+          apt-get install -y openjdk-17-jdk
+          apt-get install -y maven
+        '''
+      }
+    }
+
     stage('Build Java Microservice') {
       steps {
         sh 'mvn clean install -f DOMHASH/pom.xml'
       }
     }
 
-    stage('Install Docker') {
-      steps {
-        sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
-        sh 'sh get-docker.sh'
-      }
-    }
 
     // stage('TestMicroservice') {
     //   // steps {
