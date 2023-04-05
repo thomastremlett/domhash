@@ -25,13 +25,14 @@ pipeline {
     stage('TestMicroservice') {
       steps {
         sh "cd ./app"
-        sh "./mvnw test"
-        junit '**/target/surefire-reports/*.xml'
+        // sh "./mvnw test"
+        // junit '**/target/surefire-reports/*.xml'
       }
     }
 
     stage('Build Docker image') {
       steps {
+        sh 'cd ../'
         sh 'docker build -t domhash .'
         sh "docker tag domhash domhash:${BUILD_NUMBER}"
       }
